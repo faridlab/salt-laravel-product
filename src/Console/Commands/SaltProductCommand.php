@@ -11,7 +11,7 @@ class SaltProductCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'salt-product:command';
+    protected $signature = 'product:command';
 
     /**
      * The console command description.

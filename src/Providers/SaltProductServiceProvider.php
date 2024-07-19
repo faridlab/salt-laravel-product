@@ -29,6 +29,7 @@ class SaltProductServiceProvider extends ServiceProvider
          * A web.php file has already been generated.
          */
         // $this->loadRoutesFrom(__DIR__.'/../../routes/web.php');
+        $this->loadRoutesFrom(__DIR__.'/../../routes/api.php');
 
         /**
          * Translations
@@ -81,10 +82,13 @@ class SaltProductServiceProvider extends ServiceProvider
          * Uncomment the first function call to load the migrations.
          * Uncomment the second function call to make the migrations publishable using the 'migrations' tags.
          */
-        // $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
         // $this->publishes([
         //     __DIR__.'/../../database/migrations/' => database_path('migrations')
         // ], 'migrations');
+        $this->publishes([
+            __DIR__.'/../../database/seeders/' => database_path('seeders')
+        ], 'product-seeds');
     }
 
     /**
