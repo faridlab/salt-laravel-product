@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use SaltProduct\Controllers\ProductResourcesController;
 use SaltProduct\Controllers\ShowcasesResourcesController;
 use SaltProduct\Controllers\BrandsResourcesController;
+use SaltProduct\Controllers\WarehousesResourcesController;
 
 $version = config('app.API_VERSION', 'v1');
 
@@ -60,6 +61,32 @@ Route::middleware(['api'])
     Route::patch("brands/{id}", [BrandsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // patch collection by ID
     // DESTROY data by ID (id), selected IDs (selected), and All data (all)
     Route::delete("brands/{id}", [BrandsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // soft delete a collection by ID
+
+
+
+    // API: Warehouses RESOURCES
+    Route::get("warehouses", [WarehousesResourcesController::class, 'index']); // get entire collection
+    Route::post("warehouses", [WarehousesResourcesController::class, 'store'])->middleware(['auth:api']); // create new collection
+
+    Route::get("warehouses/trash", [WarehousesResourcesController::class, 'trash'])->middleware(['auth:api']); // trash of collection
+
+    Route::post("warehouses/import", [WarehousesResourcesController::class, 'import'])->middleware(['auth:api']); // import collection from external
+    Route::post("warehouses/export", [WarehousesResourcesController::class, 'export'])->middleware(['auth:api']); // export entire collection
+    Route::get("warehouses/report", [WarehousesResourcesController::class, 'report'])->middleware(['auth:api']); // report collection
+
+    Route::get("warehouses/{id}/trashed", [WarehousesResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // get collection by ID from trash
+
+    // RESTORE data by ID (id), selected IDs (selected), and All data (all)
+    Route::post("warehouses/{id}/restore", [WarehousesResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // restore collection by ID
+
+    // DELETE data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("warehouses/{id}/delete", [WarehousesResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // hard delete collection by ID
+
+    Route::get("warehouses/{id}", [WarehousesResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
+    Route::put("warehouses/{id}", [WarehousesResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // update collection by ID
+    Route::patch("warehouses/{id}", [WarehousesResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // patch collection by ID
+    // DESTROY data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("warehouses/{id}", [WarehousesResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // soft delete a collection by ID
 
 
     // API: products RESOURCES
