@@ -89,4 +89,8 @@ class Warehouses extends Resources {
                     ->where('directory', 'warehouses/thumbnail');
     }
 
+    public function address() {
+        return $this->hasOne('SaltProduct\Models\WarehouseAddresses', 'warehouse_id', 'id');
+    }
+
 }
