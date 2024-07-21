@@ -14,6 +14,7 @@ use SaltProduct\Controllers\VariantUnitsResourcesController;
 use SaltProduct\Controllers\ProductVariantsResourcesController;
 use SaltProduct\Controllers\ProductWishlistResourcesController;
 use SaltProduct\Controllers\ProductVariantUnitsResourcesController;
+use SaltProduct\Controllers\PromotionsResourcesController;
 
 $version = config('app.API_VERSION', 'v1');
 
@@ -320,5 +321,30 @@ Route::middleware(['api'])
     Route::patch("product_variant_units/{id}", [ProductVariantUnitsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // patch collection by ID
     // DESTROY data by ID (id), selected IDs (selected), and All data (all)
     Route::delete("product_variant_units/{id}", [ProductVariantUnitsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // soft delete a collection by ID
+
+
+    // API: Promotions RESOURCES
+    Route::get("promotions", [PromotionsResourcesController::class, 'index']); // get entire collection
+    Route::post("promotions", [PromotionsResourcesController::class, 'store'])->middleware(['auth:api']); // create new collection
+
+    Route::get("promotions/trash", [PromotionsResourcesController::class, 'trash'])->middleware(['auth:api']); // trash of collection
+
+    Route::post("promotions/import", [PromotionsResourcesController::class, 'import'])->middleware(['auth:api']); // import collection from external
+    Route::post("promotions/export", [PromotionsResourcesController::class, 'export'])->middleware(['auth:api']); // export entire collection
+    Route::get("promotions/report", [PromotionsResourcesController::class, 'report'])->middleware(['auth:api']); // report collection
+
+    Route::get("promotions/{id}/trashed", [PromotionsResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // get collection by ID from trash
+
+    // RESTORE data by ID (id), selected IDs (selected), and All data (all)
+    Route::post("promotions/{id}/restore", [PromotionsResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // restore collection by ID
+
+    // DELETE data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("promotions/{id}/delete", [PromotionsResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // hard delete collection by ID
+
+    Route::get("promotions/{id}", [PromotionsResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
+    Route::put("promotions/{id}", [PromotionsResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // update collection by ID
+    Route::patch("promotions/{id}", [PromotionsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // patch collection by ID
+    // DESTROY data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("promotions/{id}", [PromotionsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // soft delete a collection by ID
 
 });
