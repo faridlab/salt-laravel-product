@@ -34,6 +34,7 @@ class ProductStocks extends Resources {
         'id',
         'product_id',
         'warehouse_id',
+        'variant_id',
         'status',
         'total',
     ];
@@ -41,6 +42,7 @@ class ProductStocks extends Resources {
     protected $rules = array(
         'product_id' => 'required|string',
         'warehouse_id' => 'required|string',
+        'variant_id' => 'nullable|string',
         'status' => 'nullable|in:intial,restock,cancel,out',
         'price' => 'required|integer',
     );
@@ -67,23 +69,29 @@ class ProductStocks extends Resources {
     protected $searchable = array(
         'product_id',
         'warehouse_id',
+        'variant_id',
         'status',
         'total',
     );
     protected $fillable = array(
         'product_id',
         'warehouse_id',
+        'variant_id',
         'status',
         'total',
     );
     protected $casts = [];
 
-    public function category() {
-        return $this->belongsTo('SaltCategories\Models\Categories', 'category_id', 'id')->withTrashed();
+    public function product() {
+        return $this->belongsTo('SaltProduct\Models\Products', 'product_id', 'id')->withTrashed();
     }
 
-    public function brand() {
-        return $this->hasMany('SaltProduct\Models\Brands', 'brand_id', 'id')->withTrashed();
+    public function warehouse() {
+        return $this->belongsTo('SaltProduct\Models\Warehouses', 'warehouse_id', 'id')->withTrashed();
+    }
+
+    public function variant() {
+        return $this->belongsTo('SaltProduct\Models\ProductVariantUnits', 'variant_id', 'id')->withTrashed();
     }
 
 }
