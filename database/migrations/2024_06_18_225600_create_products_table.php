@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
 
             // FIELDS:
-            $table->string('code', 10); // NOTE: AUTO GENERATE CODE
+            $table->string('code', 16)->nullable(); // NOTE: AUTO GENERATE CODE
             $table->string('name');
             $table->string('slug')->nullable();
             $table->text('description');
@@ -60,7 +60,7 @@ return new class extends Migration
             // annotations
             // etalase
 
-            $table->json('stock');
+            $table->json('stock')->nullable();
             // stock->total
             // stock->minimum_alert
             // stock->wording
