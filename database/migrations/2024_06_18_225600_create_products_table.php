@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
 
             // FIELDS:
-            $table->string('product_id', 10); // NOTE: AUTO GENERATE CODE
+            $table->string('code', 10); // NOTE: AUTO GENERATE CODE
             $table->string('name');
             $table->string('slug')->nullable();
             $table->text('description');
