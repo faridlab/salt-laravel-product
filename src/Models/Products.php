@@ -163,7 +163,11 @@ class Products extends Resources {
     }
 
     public function brand() {
-        return $this->hasMany('SaltProduct\Models\Brands', 'brand_id', 'id')->withTrashed();
+        return $this->belongsTo('SaltProduct\Models\Brands', 'brand_id', 'id')->withTrashed();
+    }
+
+    public function variants() {
+        return $this->hasMany('SaltProduct\Models\ProductVariants', 'product_id', 'id')->withTrashed();
     }
 
 }
