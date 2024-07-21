@@ -2,11 +2,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-use SaltProduct\Controllers\ProductResourcesController;
 use SaltProduct\Controllers\ShowcasesResourcesController;
 use SaltProduct\Controllers\BrandsResourcesController;
 use SaltProduct\Controllers\WarehousesResourcesController;
 use SaltProduct\Controllers\WarehouseAddressesResourcesController;
+use SaltProduct\Controllers\ProductResourcesController;
+use SaltProduct\Controllers\ProductStocksResourcesController;
 
 $version = config('app.API_VERSION', 'v1');
 
@@ -138,5 +139,30 @@ Route::middleware(['api'])
     Route::patch("products/{id}", [ProductResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // patch collection by ID
     // DESTROY data by ID (id), selected IDs (selected), and All data (all)
     Route::delete("products/{id}", [ProductResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // soft delete a collection by ID
+
+
+    // API: Product Stocks RESOURCES
+    Route::get("product_stocks", [ProductStocksResourcesController::class, 'index']); // get entire collection
+    Route::post("product_stocks", [ProductStocksResourcesController::class, 'store'])->middleware(['auth:api']); // create new collection
+
+    Route::get("product_stocks/trash", [ProductStocksResourcesController::class, 'trash'])->middleware(['auth:api']); // trash of collection
+
+    Route::post("product_stocks/import", [ProductStocksResourcesController::class, 'import'])->middleware(['auth:api']); // import collection from external
+    Route::post("product_stocks/export", [ProductStocksResourcesController::class, 'export'])->middleware(['auth:api']); // export entire collection
+    Route::get("product_stocks/report", [ProductStocksResourcesController::class, 'report'])->middleware(['auth:api']); // report collection
+
+    Route::get("product_stocks/{id}/trashed", [ProductStocksResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // get collection by ID from trash
+
+    // RESTORE data by ID (id), selected IDs (selected), and All data (all)
+    Route::post("product_stocks/{id}/restore", [ProductStocksResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // restore collection by ID
+
+    // DELETE data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("product_stocks/{id}/delete", [ProductStocksResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // hard delete collection by ID
+
+    Route::get("product_stocks/{id}", [ProductStocksResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
+    Route::put("product_stocks/{id}", [ProductStocksResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // update collection by ID
+    Route::patch("product_stocks/{id}", [ProductStocksResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // patch collection by ID
+    // DESTROY data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("product_stocks/{id}", [ProductStocksResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // soft delete a collection by ID
 
 });
