@@ -113,4 +113,9 @@ class Promotions extends Resources {
     public function category() {
         return $this->belongsTo('SaltCategories\Models\Categories', 'category_id', 'id')->withTrashed();
     }
+
+    public function bundle() {
+        return $this->hasMany('SaltProduct\Models\PromotionBundle', 'promo_id', 'id')->withTrashed();
+    }
+
 }
