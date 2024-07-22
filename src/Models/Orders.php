@@ -121,4 +121,8 @@ class Orders extends Resources {
     public function promo() {
         return $this->belongsTo('SaltProduct\Models\Promotions', 'promo_id', 'id')->withTrashed();
     }
+
+    public function transaction() {
+        return $this->belongsTo('SaltProduct\Models\Transactions', 'transaction_id', 'id')->withTrashed();
+    }
 }
