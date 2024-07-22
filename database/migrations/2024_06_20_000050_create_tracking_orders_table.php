@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         // TRACKING STATUS
-        // [001-099] NEW - PESANAN BARU
-        // [100-199] READY - SIAP DIKIRIM
-        // [200-299] DELIVERING - DALAM PENGIRIMAN
-        // [300-399] COMPLAINT - DIKOMPLAIN
-        // [400-499] FINISH - PESANAN SELESAI
-        // [500-599] CANCELED - DIBATALKAN
+        // [001-999] NEW - PESANAN BARU
+        // [1000-1999] READY - SIAP DIKIRIM
+        // [2000-2999] DELIVERING - DALAM PENGIRIMAN
+        // [3000-3999] COMPLAINT - DIKOMPLAIN
+        // [4000-4999] FINISH - PESANAN SELESAI
+        // [5000-5999] CANCELED - DIBATALKAN
         Schema::create('tracking_orders', function (Blueprint $table) {
             $table->uuid('id')->primary();
 
