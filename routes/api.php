@@ -20,6 +20,7 @@ use SaltProduct\Controllers\PromotionUsageResourcesController;
 use SaltProduct\Controllers\CartsResourcesController;
 use SaltProduct\Controllers\OrdersResourcesController;
 use SaltProduct\Controllers\TransactionsResourcesController;
+use SaltProduct\Controllers\TrackingStatusesResourcesController;
 
 $version = config('app.API_VERSION', 'v1');
 
@@ -476,5 +477,30 @@ Route::middleware(['api'])
     Route::patch("transactions/{id}", [TransactionsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // patch collection by ID
     // DESTROY data by ID (id), selected IDs (selected), and All data (all)
     Route::delete("transactions/{id}", [TransactionsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // soft delete a collection by ID
+
+
+    // API: Tracking Statuses RESOURCES
+    Route::get("tracking_statuses", [TrackingStatusesResourcesController::class, 'index']); // get entire collection
+    Route::post("tracking_statuses", [TrackingStatusesResourcesController::class, 'store'])->middleware(['auth:api']); // create new collection
+
+    Route::get("tracking_statuses/trash", [TrackingStatusesResourcesController::class, 'trash'])->middleware(['auth:api']); // trash of collection
+
+    Route::post("tracking_statuses/import", [TrackingStatusesResourcesController::class, 'import'])->middleware(['auth:api']); // import collection from external
+    Route::post("tracking_statuses/export", [TrackingStatusesResourcesController::class, 'export'])->middleware(['auth:api']); // export entire collection
+    Route::get("tracking_statuses/report", [TrackingStatusesResourcesController::class, 'report'])->middleware(['auth:api']); // report collection
+
+    Route::get("tracking_statuses/{id}/trashed", [TrackingStatusesResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // get collection by ID from trash
+
+    // RESTORE data by ID (id), selected IDs (selected), and All data (all)
+    Route::post("tracking_statuses/{id}/restore", [TrackingStatusesResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // restore collection by ID
+
+    // DELETE data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("tracking_statuses/{id}/delete", [TrackingStatusesResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // hard delete collection by ID
+
+    Route::get("tracking_statuses/{id}", [TrackingStatusesResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
+    Route::put("tracking_statuses/{id}", [TrackingStatusesResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // update collection by ID
+    Route::patch("tracking_statuses/{id}", [TrackingStatusesResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // patch collection by ID
+    // DESTROY data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("tracking_statuses/{id}", [TrackingStatusesResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // soft delete a collection by ID
 
 });
