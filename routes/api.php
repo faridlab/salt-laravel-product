@@ -19,6 +19,7 @@ use SaltProduct\Controllers\PromotionBundleResourcesController;
 use SaltProduct\Controllers\PromotionUsageResourcesController;
 use SaltProduct\Controllers\CartsResourcesController;
 use SaltProduct\Controllers\OrdersResourcesController;
+use SaltProduct\Controllers\TransactionsResourcesController;
 
 $version = config('app.API_VERSION', 'v1');
 
@@ -450,5 +451,30 @@ Route::middleware(['api'])
     Route::patch("orders/{id}", [OrdersResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // patch collection by ID
     // DESTROY data by ID (id), selected IDs (selected), and All data (all)
     Route::delete("orders/{id}", [OrdersResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // soft delete a collection by ID
+
+
+    // API: Transaction RESOURCES
+    Route::get("transactions", [TransactionsResourcesController::class, 'index']); // get entire collection
+    Route::post("transactions", [TransactionsResourcesController::class, 'store'])->middleware(['auth:api']); // create new collection
+
+    Route::get("transactions/trash", [TransactionsResourcesController::class, 'trash'])->middleware(['auth:api']); // trash of collection
+
+    Route::post("transactions/import", [TransactionsResourcesController::class, 'import'])->middleware(['auth:api']); // import collection from external
+    Route::post("transactions/export", [TransactionsResourcesController::class, 'export'])->middleware(['auth:api']); // export entire collection
+    Route::get("transactions/report", [TransactionsResourcesController::class, 'report'])->middleware(['auth:api']); // report collection
+
+    Route::get("transactions/{id}/trashed", [TransactionsResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // get collection by ID from trash
+
+    // RESTORE data by ID (id), selected IDs (selected), and All data (all)
+    Route::post("transactions/{id}/restore", [TransactionsResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // restore collection by ID
+
+    // DELETE data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("transactions/{id}/delete", [TransactionsResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // hard delete collection by ID
+
+    Route::get("transactions/{id}", [TransactionsResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
+    Route::put("transactions/{id}", [TransactionsResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // update collection by ID
+    Route::patch("transactions/{id}", [TransactionsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // patch collection by ID
+    // DESTROY data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("transactions/{id}", [TransactionsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // soft delete a collection by ID
 
 });
