@@ -83,7 +83,7 @@ return new class extends Migration
                 'duration' => null,
                 'time_unit' => 'day',
             ];
-            $table->json('preorder')->default($preorder);
+            $table->json('preorder')->default(json_encode($preorder));
 
             $table->json('variant')->nullable();
             // variants: color|size|tool|custom
