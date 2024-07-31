@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use SaltProduct\Models\Variants;
 use SaltProduct\Models\VariantUnits;
+use Illuminate\Support\Str;
 
 class VariantsSeeder extends Seeder
 {
@@ -17,9 +18,9 @@ class VariantsSeeder extends Seeder
     public function run()
     {
         $variants = [
-            ['type' => 'color', 'name' => 'Warna'],
-            ['type' => 'size', 'name' => 'Ukuran'],
-            ['type' => 'tool', 'name' => 'Alat Perkakas'],
+            ['id' => Str::uuid()->toString(), 'type' => 'color', 'name' => 'Warna'],
+            ['id' => Str::uuid()->toString(), 'type' => 'size', 'name' => 'Ukuran'],
+            ['id' => Str::uuid()->toString(), 'type' => 'tool', 'name' => 'Alat Perkakas'],
         ];
 
         Variants::insert($variants);
@@ -30,6 +31,7 @@ class VariantsSeeder extends Seeder
         $uid = $variant->id;
         $units = [
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'color',
                 'name' => 'color',
@@ -45,6 +47,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'color',
                 'name' => 'color',
@@ -60,6 +63,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'color',
                 'name' => 'color',
@@ -75,6 +79,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'color',
                 'name' => 'color',
@@ -90,6 +95,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'color',
                 'name' => 'color',
@@ -105,6 +111,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'color',
                 'name' => 'color',
@@ -120,6 +127,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'color',
                 'name' => 'color',
@@ -135,6 +143,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'color',
                 'name' => 'color',
@@ -150,6 +159,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'color',
                 'name' => 'color',
@@ -165,6 +175,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'color',
                 'name' => 'color',
@@ -180,6 +191,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'color',
                 'name' => 'color',
@@ -195,6 +207,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'color',
                 'name' => 'color',
@@ -210,6 +223,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'color',
                 'name' => 'color',
@@ -234,6 +248,7 @@ class VariantsSeeder extends Seeder
         $uid = $variant->id;
         $units = [
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'size',
                 'name' => 'size',
@@ -249,6 +264,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'size',
                 'name' => 'size',
@@ -264,6 +280,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'size',
                 'name' => 'size',
@@ -279,6 +296,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'size',
                 'name' => 'size',
@@ -294,6 +312,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'size',
                 'name' => 'size',
@@ -309,6 +328,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'size',
                 'name' => 'size',
@@ -324,6 +344,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'size',
                 'name' => 'size',
@@ -339,6 +360,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'size',
                 'name' => 'size',
@@ -354,6 +376,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'size',
                 'name' => 'size',
@@ -369,6 +392,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'size',
                 'name' => 'size',
@@ -384,6 +408,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'size',
                 'name' => 'size',
@@ -399,6 +424,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'size',
                 'name' => 'size',
@@ -414,6 +440,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'size',
                 'name' => 'size',
@@ -429,6 +456,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'size',
                 'name' => 'size',
@@ -444,6 +472,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'size',
                 'name' => 'size',
@@ -459,6 +488,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'size',
                 'name' => 'size',
@@ -486,6 +516,7 @@ class VariantsSeeder extends Seeder
         $uid = $variant->id;
         $units = [
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -501,6 +532,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -516,6 +548,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -531,6 +564,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -546,6 +580,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -561,6 +596,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -576,6 +612,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -591,6 +628,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -606,6 +644,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -621,6 +660,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -636,6 +676,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -651,6 +692,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -666,6 +708,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -681,6 +724,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -696,6 +740,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -711,6 +756,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -726,6 +772,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -741,6 +788,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -756,6 +804,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -771,6 +820,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -786,6 +836,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -801,6 +852,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'weight',
@@ -818,6 +870,7 @@ class VariantsSeeder extends Seeder
 
 
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'diameter',
@@ -833,6 +886,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'diameter',
@@ -848,6 +902,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'diameter',
@@ -863,6 +918,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'diameter',
@@ -878,6 +934,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'diameter',
@@ -893,6 +950,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'diameter',
@@ -908,6 +966,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'diameter',
@@ -923,6 +982,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'diameter',
@@ -940,6 +1000,7 @@ class VariantsSeeder extends Seeder
 
 
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'dimension',
@@ -955,6 +1016,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'dimension',
@@ -970,6 +1032,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'dimension',
@@ -985,6 +1048,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'dimension',
@@ -1002,6 +1066,7 @@ class VariantsSeeder extends Seeder
 
 
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1017,6 +1082,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1032,6 +1098,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1047,6 +1114,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1062,6 +1130,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1077,6 +1146,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1092,6 +1162,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1107,6 +1178,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1122,6 +1194,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1137,6 +1210,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1152,6 +1226,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1167,6 +1242,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1182,6 +1258,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1197,6 +1274,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1212,6 +1290,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1227,6 +1306,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1242,6 +1322,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1257,6 +1338,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1272,6 +1354,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1287,6 +1370,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1302,6 +1386,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1317,6 +1402,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1332,6 +1418,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1347,6 +1434,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1362,6 +1450,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1377,6 +1466,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1392,6 +1482,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
@@ -1407,6 +1498,7 @@ class VariantsSeeder extends Seeder
                 'weight' => 0,
             ],
             [
+                'id' => Str::uuid()->toString(),
                 'variant_id' => $uid,
                 'type' => 'tool',
                 'name' => 'volume',
