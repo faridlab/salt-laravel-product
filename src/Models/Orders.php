@@ -28,6 +28,7 @@ class Orders extends Resources {
         'orderby',
         // Fields table categories
         'id',
+        'transaction_id',
         'user_id',
         'product_id',
         'warehouse_id',
@@ -43,6 +44,7 @@ class Orders extends Resources {
     ];
 
     protected $rules = array(
+        'transaction_id' => 'nullable|string',
         'user_id' => 'required|string',
         'product_id' => 'required|string',
         'warehouse_id' => 'required|string',
