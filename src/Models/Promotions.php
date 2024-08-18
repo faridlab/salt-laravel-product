@@ -30,6 +30,7 @@ class Promotions extends Resources {
         'id',
         'name',
         'code',
+        'status',
         'type',
         'category',
         'product_id',
@@ -45,6 +46,7 @@ class Promotions extends Resources {
     protected $rules = array(
         'name' => 'required|string',
         'code' => 'required|string',
+        'status' => 'nullable|in:inactive,active,expired,invalid',
         'type' => 'nullable|in:standard,minimum,quantity,event',
         'category' => 'nullable|in:all,product,category,bundle',
         'product_id' => 'nullable|string',
@@ -79,6 +81,7 @@ class Promotions extends Resources {
     protected $searchable = array(
         'name',
         'code',
+        'status',
         'type',
         'category',
         'product_id',
@@ -93,6 +96,7 @@ class Promotions extends Resources {
     protected $fillable = array(
         'name',
         'code',
+        'status',
         'type',
         'category',
         'product_id',
