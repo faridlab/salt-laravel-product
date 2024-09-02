@@ -19,7 +19,6 @@ use SaltLaravel\Controllers\Traits\ResourceDeletable;
 use SaltLaravel\Controllers\Traits\ResourceImportable;
 use SaltLaravel\Controllers\Traits\ResourceExportable;
 use SaltLaravel\Controllers\Traits\ResourceReportable;
-use SaltProduct\Models\CategoryTree;
 /**
  * @OA\Info(
  *      title="Categories Endpoint",
