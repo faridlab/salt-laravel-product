@@ -3,7 +3,7 @@
 namespace SaltProduct\Traits;
 
 use Illuminate\Support\Str;
-use SaltProduct\Models\Categories;
+use SaltProduct\Models\Brands;
 
 trait Sluggable
 {
@@ -16,14 +16,14 @@ trait Sluggable
                 $model->slug = Str::slug($model->name, '-');
             }
 
-            $count = Categories::where('slug', $model->slug)->count();
+            $count = Brands::where('slug', $model->slug)->count();
             if($count === 0) return;
 
             $model->slug = $model->slug .'-'. ($count + 1);
         });
 
         static::updating(function ($model) {
-            $count = Categories::where('slug', $model->slug)->count();
+            $count = Brands::where('slug', $model->slug)->count();
             if($count === 0) return;
 
             $model->slug = $model->slug .'-'. ($count + 1);
