@@ -9,17 +9,26 @@ use DB;
 use Illuminate\Support\Facades\Schema;
 
 use SaltLaravel\Models\Resources;
+use SaltFile\Traits\Fileable;
 use SaltLaravel\Traits\ObservableModel;
 use SaltLaravel\Traits\Uuids;
-use SaltProduct\Traits\Sluggable;
+use SaltProduct\Traits\ProductCodeSluggable;
 use SaltProduct\Traits\Orderable;
 
 class Products extends Resources {
 
     use Uuids;
     use ObservableModel;
-    use Sluggable;
+    use ProductCodeSluggable;
     use Orderable;
+
+    use Fileable;
+    protected $fileableFields = ['thumbnail', 'image'];
+    protected $fileableCascade = true;
+    protected $fileableDirs = [
+        'thumbnail' => 'products/thumbnail',
+        'image' => 'products/image',
+    ];
 
     protected $filters = [
         'default',

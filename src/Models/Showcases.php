@@ -12,13 +12,13 @@ use SaltFile\Traits\Fileable;
 use SaltLaravel\Models\Resources;
 use SaltLaravel\Traits\ObservableModel;
 use SaltLaravel\Traits\Uuids;
-use SaltProduct\Traits\Sluggable;
+use SaltProduct\Traits\ShowcaseSluggable;
 
 class Showcases extends Resources {
 
     use Uuids;
     use ObservableModel;
-    use Sluggable;
+    use ShowcaseSluggable;
 
     use Fileable;
     protected $fileableFields = ['thumbnail', 'image'];

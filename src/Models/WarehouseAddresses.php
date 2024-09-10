@@ -12,13 +12,11 @@ use SaltFile\Traits\Fileable;
 use SaltLaravel\Models\Resources;
 use SaltLaravel\Traits\ObservableModel;
 use SaltLaravel\Traits\Uuids;
-use SaltProduct\Traits\Sluggable;
 
 class WarehouseAddresses extends Resources {
 
     use Uuids;
     use ObservableModel;
-    use Sluggable;
 
     use Fileable;
     protected $fileableFields = ['thumbnail', 'image'];
