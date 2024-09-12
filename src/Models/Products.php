@@ -179,4 +179,8 @@ class Products extends Resources {
         return $this->hasMany('SaltProduct\Models\ProductVariants', 'product_id', 'id')->withTrashed();
     }
 
+    public function images() {
+        return $this->hasMany('SaltFile\Models\Files', 'foreign_id', 'id')->withTrashed();
+    }
+
 }
