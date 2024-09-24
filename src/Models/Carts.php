@@ -11,11 +11,13 @@ use Illuminate\Support\Facades\Schema;
 use SaltLaravel\Models\Resources;
 use SaltLaravel\Traits\ObservableModel;
 use SaltLaravel\Traits\Uuids;
+use SaltProduct\Traits\Shopable;
 
 class Carts extends Resources {
 
     use Uuids;
     use ObservableModel;
+    use Shopable;
 
     protected $filters = [
         'default',
@@ -30,7 +32,6 @@ class Carts extends Resources {
         'id',
         'user_id',
         'product_id',
-        'warehouse_id',
         'status',
         'currency',
         'price',
@@ -40,21 +41,20 @@ class Carts extends Resources {
     ];
 
     protected $rules = array(
-        'user_id' => 'required|string',
+        'user_id' => 'nullable|string',
         'product_id' => 'required|string',
-        'warehouse_id' => 'required|string',
         'status' => 'nullable|in:active,checkout,cancel',
         'currency' => 'nullable|in:IDR,USD,EUR',
-        'price' => 'required|double',
-        'quantity' => 'required|integer',
-        'total' => 'required|integer',
+        'price' => 'nullable|double',
+        'quantity' => 'nullable|integer',
+        'total' => 'nullable|integer',
         'data' => 'nullable|json',
     );
 
     protected $auths = array (
-        // 'index',
+        'index',
         'store',
-        // 'show',
+        'show',
         'update',
         'patch',
         'destroy',
@@ -81,10 +81,10 @@ class Carts extends Resources {
         'total',
         'data',
     );
+
     protected $fillable = array(
         'user_id',
         'product_id',
-        'warehouse_id',
         'status',
         'currency',
         'price',
@@ -96,10 +96,6 @@ class Carts extends Resources {
 
     public function product() {
         return $this->belongsTo('SaltProduct\Models\Products', 'product_id', 'id')->withTrashed();
-    }
-
-    public function warehouse() {
-        return $this->belongsTo('SaltProduct\Models\Warehuses', 'warehouse_id', 'id')->withTrashed();
     }
 
     public function user() {
