@@ -21,5 +21,9 @@ trait Shopable
             $model->quantity = 1;
             $model->total = $product->price;
         });
+
+        static::updating(function ($model) {
+            $model->total = $model->quantity * $product->price;
+        });
     }
 }
