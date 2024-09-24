@@ -11,11 +11,15 @@ use Illuminate\Support\Facades\Schema;
 use SaltLaravel\Models\Resources;
 use SaltLaravel\Traits\ObservableModel;
 use SaltLaravel\Traits\Uuids;
+use SaltProduct\Traits\Wishable;
 
 class ProductWishlist extends Resources {
 
+    protected $table = 'product_wishlist';
+
     use Uuids;
     use ObservableModel;
+    use Wishable;
 
     protected $filters = [
         'default',
@@ -34,13 +38,13 @@ class ProductWishlist extends Resources {
 
     protected $rules = array(
         'product_id' => 'required|string',
-        'user_id' => 'required|string'
+        'user_id' => 'nullable|string'
     );
 
     protected $auths = array (
-        // 'index',
+        'index',
         'store',
-        // 'show',
+        'show',
         'update',
         'patch',
         'destroy',
@@ -66,11 +70,11 @@ class ProductWishlist extends Resources {
     );
     protected $casts = [];
 
-    public function porduct() {
-        return $this->hasMany('SaltProduct\Models\Products', 'product_id', 'id')->withTrashed();
+    public function product() {
+        return $this->belongsTo('SaltProduct\Models\Products', 'product_id', 'id')->withTrashed();
     }
 
     public function user() {
-        return $this->hasMany('SaltLaravel\Models\Users', 'user_id', 'id')->withTrashed();
+        return $this->belongsTo('SaltLaravel\Models\Users', 'user_id', 'id')->withTrashed();
     }
 }
