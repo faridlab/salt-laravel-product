@@ -165,7 +165,16 @@ class Products extends Resources {
         'brand_id',
         'data',
     );
-    protected $casts = [];
+
+    protected $casts = [
+        'stock' => 'array',
+        'dimension' => 'array',
+        'stock' => 'array',
+        'wholesale' => 'array',
+        'preorder' => 'array',
+        'variant' => 'array',
+        'data' => 'array',
+    ];
 
     public function category() {
         return $this->belongsTo('SaltCategories\Models\Categories', 'category_id', 'id')->withTrashed();
