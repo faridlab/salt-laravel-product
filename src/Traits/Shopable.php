@@ -23,6 +23,8 @@ trait Shopable
         });
 
         static::updating(function ($model) {
+            $product = Products::find($model->product_id);
+            $model->price = $product->price;
             $model->total = $model->quantity * $product->price;
         });
     }
