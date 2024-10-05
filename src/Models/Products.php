@@ -12,15 +12,13 @@ use SaltLaravel\Models\Resources;
 use SaltFile\Traits\Fileable;
 use SaltLaravel\Traits\ObservableModel;
 use SaltLaravel\Traits\Uuids;
-use SaltProduct\Traits\ProductCodeSluggable;
-use SaltProduct\Traits\Orderable;
+use SaltProduct\Traits\ProductCreatable;
 
 class Products extends Resources {
 
     use Uuids;
     use ObservableModel;
-    use ProductCodeSluggable;
-    use Orderable;
+    use ProductCreatable;
 
     use Fileable;
     protected $fileableFields = ['thumbnail', 'image'];
@@ -74,12 +72,12 @@ class Products extends Resources {
         'description' => 'required|string',
         'category_id' => 'required|string',
         'currency' => 'nullable|string',
-        'price' => 'required|double',
+        'price' => 'required|numeric',
         'status' => 'nullable|in:banned,pending,deleted,active,featured,inactive',
         'condition' => 'nullable|in:new,used',
         'min_order' => 'nullable|integer',
         'weight_unit' => 'nullable|in:gram,kg',
-        'weight' => 'nullable|double',
+        'weight' => 'nullable|numeric',
         'dimension_unit' => 'nullable|in:m,cm,mm',
         'dimension' => 'nullable|json',
         'guarantee' => 'nullable|in:distributor,brand,store,indonesia,international,noguarantee',
