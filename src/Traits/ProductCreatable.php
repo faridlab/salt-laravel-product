@@ -4,13 +4,14 @@ namespace SaltProduct\Traits;
 
 use Illuminate\Support\Str;
 use SaltProduct\Models\Products;
+use SaltFile\Models\Files;
 
-trait ProductCodeSluggable
+trait ProductCreatable
 {
     /**
      * Boot function from Laravel.
      */
-    public static function bootProductCodeSluggable() {
+    public static function bootProductCreatable() {
         static::creating(function ($model) {
             $code = Str::random(10);
             if(empty($model->code) && is_null($model->code)) {
@@ -22,6 +23,10 @@ trait ProductCodeSluggable
                 return;
             }
             $model->slug = $model->slug .'-'. $code;
+
+            if(empty($model->preorder) && is_null($model->preorder)) {
+                $model->preorder = '{"available":false,"duration":null,"time_unit":"day"}';
+            }
         });
 
         static::updating(function ($model) {
@@ -32,5 +37,11 @@ trait ProductCodeSluggable
             }
             $model->slug = Str::slug($model->name, '-') .'-'. $model->code;
         });
+
+        static::created(function ($model) {
+            Files::where('foreign_id', $model->code)
+            ->update(['foreign_id' => $model->id]);
+        });
+
     }
 }
