@@ -53,10 +53,10 @@ class VariantUnits extends Resources {
         'label_english' => 'required|string',
         'hex' => 'nullable|string',
         'icon' => 'nullable|string',
-        'price' => 'required|double',
+        'price' => 'required|numeric',
         'stock' => 'required|integer',
         'sku' => 'nullable|string',
-        'weight' => 'required|double',
+        'weight' => 'required|numeric',
     );
 
     protected $auths = array (

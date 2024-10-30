@@ -62,8 +62,8 @@ class WarehouseAddresses extends Resources {
         'address2' => 'nullable|string',
         'rtrw' => 'nullable|string',
         'postalcode' => 'nullable|string',
-        'latitude' => 'nullable|double',
-        'longitude' => 'nullable|double',
+        'latitude' => 'nullable|numeric',
+        'longitude' => 'nullable|numeric',
     );
 
     protected $auths = array (

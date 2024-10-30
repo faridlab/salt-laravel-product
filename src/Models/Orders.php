@@ -51,7 +51,7 @@ class Orders extends Resources {
         'promo_id' => 'nullable|string',
         'status' => 'nullable|in:settlement,unpaid,cancel,paid',
         'currency' => 'nullable|in:IDR,USD,EUR',
-        'price' => 'required|double',
+        'price' => 'required|numeric',
         'quantity' => 'required|integer',
         'tax' => 'nullable|integer',
         'discount' => 'nullable|integer',

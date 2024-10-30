@@ -45,7 +45,7 @@ class Carts extends Resources {
         'product_id' => 'required|string',
         'status' => 'nullable|in:active,checkout,cancel',
         'currency' => 'nullable|in:IDR,USD,EUR',
-        'price' => 'nullable|double',
+        'price' => 'nullable|numeric',
         'quantity' => 'nullable|integer',
         'total' => 'nullable|integer',
         'data' => 'nullable|json',
