@@ -46,6 +46,8 @@ class Products extends Resources {
         'category_id',
         'currency',
         'price',
+        'price_discount',
+        'price_discount_percentage',
         'status',
         'condition',
         'min_order',
@@ -73,6 +75,8 @@ class Products extends Resources {
         'category_id' => 'required|string',
         'currency' => 'nullable|string',
         'price' => 'required|numeric',
+        'price_discount' => 'nullable|numeric',
+        'price_discount_percentage' => 'nullable|numeric',
         'status' => 'nullable|in:banned,pending,deleted,active,featured,inactive',
         'condition' => 'nullable|in:new,used',
         'min_order' => 'nullable|integer',
@@ -119,6 +123,8 @@ class Products extends Resources {
         'category_id',
         'currency',
         'price',
+        'price_discount',
+        'price_discount_percentage',
         'status',
         'condition',
         'min_order',
@@ -145,6 +151,8 @@ class Products extends Resources {
         'category_id',
         'currency',
         'price',
+        'price_discount',
+        'price_discount_percentage',
         'status',
         'condition',
         'min_order',
@@ -188,6 +196,10 @@ class Products extends Resources {
 
     public function images() {
         return $this->hasMany('SaltFile\Models\Files', 'foreign_id', 'id')->withTrashed();
+    }
+
+    public function showcases() {
+        return $this->hasMany('SaltProduct\Models\ProductShowcases', 'product_id', 'id')->withTrashed();
     }
 
 }
