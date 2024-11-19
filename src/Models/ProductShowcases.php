@@ -58,11 +58,11 @@ class ProductShowcases extends Resources {
 
     protected $searchable = array(
         'product_id',
-        'warehouse_id',
+        'showcase_id',
     );
     protected $fillable = array(
         'product_id',
-        'warehouse_id',
+        'showcase_id',
     );
     protected $casts = [];
 
