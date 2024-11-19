@@ -22,7 +22,6 @@ trait ProductCreatable
 
             if(empty($model->slug) && is_null($model->slug)) {
                 $model->slug = Str::slug($model->name, '-') .'-'. $code;
-                return;
             }
             $model->slug = $model->slug .'-'. $code;
 
