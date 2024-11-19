@@ -3,7 +3,9 @@
 namespace SaltProduct\Traits;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use SaltProduct\Models\Products;
+use SaltProduct\Models\ProductShowcases;
 use SaltFile\Models\Files;
 
 trait ProductCreatable
@@ -27,6 +29,10 @@ trait ProductCreatable
             if(empty($model->preorder) && is_null($model->preorder)) {
                 $model->preorder = '{"available":false,"duration":null,"time_unit":"day"}';
             }
+
+            if(!is_null($model->price_discount) || !empty($model->price_discount)) {
+                $model->price_discount_percentage = ($model->price_discount / $model->price) * 100;
+            }
         });
 
         static::updating(function ($model) {
@@ -41,6 +47,19 @@ trait ProductCreatable
         static::created(function ($model) {
             Files::where('foreign_id', $model->code)
             ->update(['foreign_id' => $model->id]);
+
+            $showcases = request()->get('showcases');
+            $productShowcases = [];
+            foreach ($showcases as $value) {
+                $productShowcases[] = [
+                    'id' => Str::uuid()->toString(),
+                    'product_id' => $model->id,
+                    'showcase_id' => $value,
+                    'created_at' => date("Y-m-d H:i:s", time()),
+                    'updated_at' => date("Y-m-d H:i:s", time()),
+                ];
+            }
+            DB::table('product_showcases')->insert($productShowcases);
         });
 
     }
