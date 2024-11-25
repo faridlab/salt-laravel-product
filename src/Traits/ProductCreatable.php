@@ -35,6 +35,9 @@ trait ProductCreatable
         });
 
         static::updating(function ($model) {
+
+            $model->price_discount_percentage = ($model->price_discount?: 0 / $model->price) * 100;
+
             $name = $model->name;
             $old_name = $model->getOriginal('name');
             if($name == $old_name) {
