@@ -89,4 +89,8 @@ class Showcases extends Resources {
                     ->where('directory', 'showcases/thumbnail');
     }
 
+    public function products() {
+        return $this->hasMany('SaltProduct\Models\ProductShowcases', 'showcase_id', 'id')->withTrashed();
+    }
+
 }
