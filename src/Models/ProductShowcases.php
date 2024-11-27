@@ -66,12 +66,12 @@ class ProductShowcases extends Resources {
     );
     protected $casts = [];
 
-    public function porduct() {
-        return $this->hasMany('SaltProduct\Models\Products', 'product_id', 'id')->withTrashed();
+    public function porducts() {
+        return $this->belongsTo('SaltProduct\Models\Products', 'product_id', 'id')->withTrashed();
     }
 
     public function showcase() {
-        return $this->hasMany('SaltProduct\Models\Showcases', 'showcase_id', 'id')->withTrashed();
+        return $this->belongsTo('SaltProduct\Models\Showcases', 'showcase_id', 'id')->withTrashed();
     }
 
 }
