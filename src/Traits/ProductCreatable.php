@@ -29,14 +29,16 @@ trait ProductCreatable
                 $model->preorder = '{"available":false,"duration":null,"time_unit":"day"}';
             }
 
-            if(!is_null($model->price_discount) || !empty($model->price_discount)) {
-                $model->price_discount_percentage = ($model->price_discount / $model->price) * 100;
+            if(!is_null($model->price_discount) && !empty($model->price_discount)) {
+                $model->price_discount_percentage = ((float) $model->price_discount / (float) $model->price) * 100;
             }
         });
 
         static::updating(function ($model) {
 
-            $model->price_discount_percentage = ($model->price_discount?: 0 / $model->price) * 100;
+            if(!is_null($model->price_discount) && !empty($model->price_discount)) {
+                $model->price_discount_percentage = ((float) $model->price_discount / (float) $model->price) * 100;
+            }
 
             $name = $model->name;
             $old_name = $model->getOriginal('name');
