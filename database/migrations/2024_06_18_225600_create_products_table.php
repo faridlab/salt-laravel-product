@@ -25,7 +25,7 @@ return new class extends Migration
             $table->enum('currency', ['IDR', 'USD', 'EUR'])->default('IDR');
             $table->float('price', 11, 8);
 
-            $table->enum('status', ['banned', 'pending', 'deleted', 'active', 'featured', 'inactive'])->default('pending');
+            $table->enum('status', ['banned', 'pending', 'deleted', 'active', 'featured', 'inactive'])->default('inactive');
 
             $table->enum('condition', ['new', 'used'])->default('new');
 
