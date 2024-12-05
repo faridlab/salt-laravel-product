@@ -34,26 +34,30 @@ trait ProductCreatable
                 $model->preorder = json_encode($preorder);
             }
 
-            if(empty($model->stock) && is_null($model->stock)) {
-                $stock = [
-                    "total" => 100,
-                    "minimum_alert" => 10,
-                    "wording" => "Stock terbatas, buruan dapatkan alat impianmu",
-                    "main" => 100,
-                    "available" => 100
-                ];
-                $model->stock = json_encode($stock);
+            $stock_total = 100;
+            if(!empty($model->stock) && !is_null($model->stock) && is_numeric($model->stock)) {
+                $stock_total = $model->stock;
             }
 
+            $stock = [
+                "total" => $stock_total,
+                "minimum_alert" => 10,
+                "wording" => "Stock terbatas, buruan dapatkan alat impianmu",
+                "main" => $stock_total,
+                "available" => $stock_total
+            ];
+            $model->stock = json_encode($stock);
+
             if(!is_null($model->price_discount) && !empty($model->price_discount)) {
-                $model->price_discount_percentage = ((float) $model->price_discount / (float) $model->price) * 100;
+                $discount = ((float) $model->price_discount / (float) $model->price) * 100;
+                $model->price_discount_percentage = (float) number_format((float) $discount, 1, '.', '');
             }
         });
 
         static::updating(function ($model) {
-
             if(!is_null($model->price_discount) && !empty($model->price_discount)) {
-                $model->price_discount_percentage = ((float) $model->price_discount / (float) $model->price) * 100;
+                $discount = ((float) $model->price_discount / (float) $model->price) * 100;
+                $model->price_discount_percentage = (float) number_format((float) $discount, 1, '.', '');
             }
 
             $name = $model->name;
