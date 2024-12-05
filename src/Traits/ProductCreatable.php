@@ -26,7 +26,23 @@ trait ProductCreatable
             $model->slug = $model->slug .'-'. $code;
 
             if(empty($model->preorder) && is_null($model->preorder)) {
-                $model->preorder = '{"available":false,"duration":null,"time_unit":"day"}';
+                $preorder = [
+                    "available" => false,
+                    "duration" => null,
+                    "time_unit" => "day"
+                ];
+                $model->preorder = json_encode($preorder);
+            }
+
+            if(empty($model->stock) && is_null($model->stock)) {
+                $stock = [
+                    "total" => 100,
+                    "minimum_alert" => 10,
+                    "wording" => "Stock terbatas, buruan dapatkan alat impianmu",
+                    "main" => 100,
+                    "available" => 100
+                ];
+                $model->stock = json_encode($stock);
             }
 
             if(!is_null($model->price_discount) && !empty($model->price_discount)) {
