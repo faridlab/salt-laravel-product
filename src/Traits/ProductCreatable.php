@@ -31,7 +31,7 @@ trait ProductCreatable
                     "duration" => null,
                     "time_unit" => "day"
                 ];
-                $model->preorder = json_encode($preorder);
+                $model->preorder = $preorder;
             }
 
             $stock_total = 100;
@@ -46,7 +46,7 @@ trait ProductCreatable
                 "main" => $stock_total,
                 "available" => $stock_total
             ];
-            $model->stock = json_encode($stock);
+            $model->stock = $stock;
 
             if(!is_null($model->price_discount) && !empty($model->price_discount)) {
                 $discount = ((float) $model->price_discount / (float) $model->price) * 100;
