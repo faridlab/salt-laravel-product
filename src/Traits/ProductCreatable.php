@@ -23,7 +23,7 @@ trait ProductCreatable
             if(empty($model->slug) && is_null($model->slug)) {
                 $model->slug = Str::slug($model->name, '-') .'-'. $code;
             }
-            $model->slug = $model->slug .'-'. $code;
+            // $model->slug = $model->slug .'-'. $code;
 
             if(empty($model->preorder) && is_null($model->preorder)) {
                 $preorder = [
@@ -65,7 +65,7 @@ trait ProductCreatable
             if($name == $old_name) {
                 return;
             }
-            $model->slug = Str::slug($model->name, '-') .'-'. $model->code;
+            // $model->slug = Str::slug($model->name, '-') .'-'. $model->code;
         });
 
         static::created(function ($model) {
