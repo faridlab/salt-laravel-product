@@ -30,11 +30,13 @@ class Promotions extends Resources {
         'id',
         'name',
         'code',
+        'is_flashsale',
         'status',
         'type',
         'category',
         'product_id',
         'category_id',
+        'showcase_id',
         'start_at',
         'expired_at',
         'quota',
@@ -46,11 +48,13 @@ class Promotions extends Resources {
     protected $rules = array(
         'name' => 'required|string',
         'code' => 'required|string',
+        'is_flashsale' => 'nullable|boolean',
         'status' => 'nullable|in:inactive,active,expired,invalid',
         'type' => 'nullable|in:standard,minimum,quantity,event',
-        'category' => 'nullable|in:all,product,category,bundle',
+        'category' => 'nullable|in:all,product,category,showcase,bundle',
         'product_id' => 'nullable|string',
         'category_id' => 'nullable|string',
+        'showcase_id' => 'nullable|string',
         'start_at' => 'nullable|date_format:Y-m-d',
         'expired_at' => 'nullable|date_format:Y-m-d',
         'quota' => 'required|integer',
@@ -81,11 +85,13 @@ class Promotions extends Resources {
     protected $searchable = array(
         'name',
         'code',
+        'is_flashsale',
         'status',
         'type',
         'category',
         'product_id',
         'category_id',
+        'showcase_id',
         'start_at',
         'expired_at',
         'quota',
@@ -96,11 +102,13 @@ class Promotions extends Resources {
     protected $fillable = array(
         'name',
         'code',
+        'is_flashsale',
         'status',
         'type',
         'category',
         'product_id',
         'category_id',
+        'showcase_id',
         'start_at',
         'expired_at',
         'quota',
@@ -120,6 +128,10 @@ class Promotions extends Resources {
 
     public function bundle() {
         return $this->hasMany('SaltProduct\Models\PromotionBundle', 'promo_id', 'id')->withTrashed();
+    }
+
+    public function showcase() {
+        return $this->belongsTo('SaltProduct\Models\Showcases', 'showcase_id', 'id')->withTrashed();
     }
 
 }
