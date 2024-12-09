@@ -27,6 +27,7 @@ return new class extends Migration
             // ALL: apply to all product and category
             // PRODUCT: berlaku spesifik produk tertentu
             // CATEGORY: berlaku untuk katergori produk dan turunannya
+            // SHOWCASE: berlaku untuk showcase tertentu
             // BUNDLE: apply to some products selected
 
             $table->foreignUuid('product_id')->nullable()->references('id')->on('products');
