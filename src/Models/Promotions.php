@@ -134,4 +134,8 @@ class Promotions extends Resources {
         return $this->belongsTo('SaltProduct\Models\Showcases', 'showcase_id', 'id')->withTrashed();
     }
 
+    public function showcase_products() {
+        return $this->hasMany('SaltProduct\Models\ProductShowcases', 'showcase_id', 'id')->withTrashed();
+    }
+
 }

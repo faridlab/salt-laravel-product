@@ -332,6 +332,7 @@ Route::middleware(['api'])
 
     // API: Promotions RESOURCES
     Route::get("promotions", [PromotionsResourcesController::class, 'index']); // get entire collection
+    Route::get("promotions/check", [PromotionsResourcesController::class, 'check']); // get entire collection
     Route::post("promotions", [PromotionsResourcesController::class, 'store'])->middleware(['auth:api']); // create new collection
 
     Route::get("promotions/trash", [PromotionsResourcesController::class, 'trash'])->middleware(['auth:api']); // trash of collection

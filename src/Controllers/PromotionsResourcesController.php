@@ -19,7 +19,7 @@ use SaltLaravel\Controllers\Traits\ResourceDeletable;
 use SaltLaravel\Controllers\Traits\ResourceImportable;
 use SaltLaravel\Controllers\Traits\ResourceExportable;
 use SaltLaravel\Controllers\Traits\ResourceReportable;
-use SaltProduct\Models\CategoryTree;
+use SaltProduct\Models\Promotions;
 /**
  * @OA\Info(
  *      title="Categories Endpoint",
@@ -68,6 +68,63 @@ class PromotionsResourcesController extends Controller
     use ResourceImportable;
     use ResourceExportable;
     use ResourceReportable;
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function check(Request $request, $parentId = null) {
+
+        $this->checkModelAuthorization('index', 'read');
+
+        try {
+
+            $items = $request->get('items', []);
+            $code = $request->get('code', '');
+
+            $today = date('Y-m-d');
+            $flash = Promotions::whereRaw('(? between promotions.start_at and promotions.expired_at)', [$today])
+                    // ->whereRaw('(promotions.is_flashsale is true or promotions.code = ?)', [$code])
+                    ->whereRaw('(promotions.is_flashsale is true)')
+                    ->withWhereHas('showcase.products', function($q) use($items) {
+                        $q->whereIn('product_showcases.product_id', $items)
+                            ->whereHas('product', function($query) {
+                                $query->where('status', 'active');
+                            });
+                    })
+                    ->with(['product', 'category'])
+                    ->first();
+
+            if($flash) {
+                $flash->available_for = $flash->showcase->products->pluck('product_id')->toArray();
+            }
+
+            $promo = Promotions::whereRaw('(? between promotions.start_at and promotions.expired_at)', [$today])
+                    ->whereRaw('(promotions.code = ?)', [$code])
+                    ->with(['product', 'category'])
+                    ->first();
+
+            if($promo && $promo->product) {
+                $promo->available_for = [$promo->product->id];
+            }
+
+            if($promo && !isset($promo->available_for)) {
+                $promo->available_for = $items;
+            }
+
+            $data = array_filter([$flash, $promo]);
+
+            $this->responder->set('message', 'Promotion checked');
+            $this->responder->set('data', $data);
+
+            return $this->responder->response();
+        } catch(\Exception $e) {
+            $this->responder->set('message', $e->getMessage());
+            $this->responder->setStatus(500, 'Internal server error.');
+            return $this->responder->response();
+        }
+    }
 
 }
 

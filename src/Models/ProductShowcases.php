@@ -66,7 +66,7 @@ class ProductShowcases extends Resources {
     );
     protected $casts = [];
 
-    public function porducts() {
+    public function product() {
         return $this->belongsTo('SaltProduct\Models\Products', 'product_id', 'id')->withTrashed();
     }
 
