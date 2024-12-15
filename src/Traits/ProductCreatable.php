@@ -71,18 +71,18 @@ trait ProductCreatable
             }
 
             $stock = [
-                "total" => request()->get('stock_total', $model->stock->total),
-                "minimum_alert" => request()->get('stock_minimum_alert', $model->stock->minimum_alert),
-                "wording" => request()->get('stock_wording', $model->stock->wording),
-                "main" => request()->get('stock_total', $model->stock->main),
-                "available" => request()->get('stock_total', $model->stock->available)
+                "total" => request()->get('stock_total', $model->stock['total']),
+                "minimum_alert" => request()->get('stock_minimum_alert', $model->stock['minimum_alert']),
+                "wording" => request()->get('stock_wording', $model->stock['wording']),
+                "main" => request()->get('stock_total', $model->stock['main']),
+                "available" => request()->get('stock_total', $model->stock['available'])
             ];
             $model->stock = $stock;
 
             $dimension = [
-                "length" => request()->get('dimension_length', $model->dimension->length),
-                "width" => request()->get('dimension_width', $model->dimension->width),
-                "height" => request()->get('dimension_height', $model->dimension->height),
+                "length" => request()->get('dimension_length', $model->dimension['length']),
+                "width" => request()->get('dimension_width', $model->dimension['width']),
+                "height" => request()->get('dimension_height', $model->dimension['height']),
             ];
             $model->dimension = $dimension;
 
