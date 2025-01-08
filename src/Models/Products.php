@@ -74,6 +74,7 @@ class Products extends Resources {
         'description' => 'required|string',
         'category_id' => 'required|string',
         'currency' => 'nullable|string',
+        'video_url' => 'nullable|string',
         'price' => 'required|numeric',
         'price_discount' => 'nullable|numeric',
         'price_discount_percentage' => 'nullable|numeric',
@@ -100,6 +101,7 @@ class Products extends Resources {
         'variant' => 'nullable|array',
         'brand_id' => 'nullable|string',
         'data' => 'nullable|array',
+        'video_url' => 'nullable|string',
     );
 
     protected $auths = array (
@@ -148,6 +150,7 @@ class Products extends Resources {
         'variant',
         'brand_id',
         'data',
+        'video_url',
     );
     protected $fillable = array(
         'code',
@@ -176,6 +179,7 @@ class Products extends Resources {
         'variant',
         'brand_id',
         'data',
+        'video_url',
     );
 
     protected $casts = [
