@@ -193,23 +193,23 @@ class Products extends Resources {
     ];
 
     public function category() {
-        return $this->belongsTo('SaltCategories\Models\Categories', 'category_id', 'id')->withTrashed();
+        return $this->belongsTo('SaltCategories\Models\Categories', 'category_id', 'id');
     }
 
     public function brand() {
-        return $this->belongsTo('SaltProduct\Models\Brands', 'brand_id', 'id')->withTrashed();
+        return $this->belongsTo('SaltProduct\Models\Brands', 'brand_id', 'id');
     }
 
     public function variants() {
-        return $this->hasMany('SaltProduct\Models\ProductVariants', 'product_id', 'id')->withTrashed();
+        return $this->hasMany('SaltProduct\Models\ProductVariants', 'product_id', 'id');
     }
 
     public function images() {
-        return $this->hasMany('SaltFile\Models\Files', 'foreign_id', 'id')->orderBy('order', 'asc')->withTrashed();
+        return $this->hasMany('SaltFile\Models\Files', 'foreign_id', 'id')->orderBy('order', 'asc');
     }
 
     public function showcases() {
-        return $this->hasMany('SaltProduct\Models\ProductShowcases', 'product_id', 'id')->withTrashed();
+        return $this->hasMany('SaltProduct\Models\ProductShowcases', 'product_id', 'id');
     }
 
 }
