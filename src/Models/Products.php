@@ -201,7 +201,7 @@ class Products extends Resources {
     }
 
     public function images() {
-        return $this->hasMany('SaltFile\Models\Files', 'foreign_id', 'id')->withTrashed();
+        return $this->hasMany('SaltFile\Models\Files', 'foreign_id', 'id')->orderBy('order', 'asc')->withTrashed();
     }
 
     public function showcases() {
