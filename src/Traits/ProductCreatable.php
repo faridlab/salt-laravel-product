@@ -51,7 +51,8 @@ trait ProductCreatable
             $model->dimension = $dimension;
 
             if(!is_null($model->price_discount) && !empty($model->price_discount)) {
-                $discount = ((float) $model->price_discount / (float) $model->price) * 100;
+                $price_discount = abs($model->price - $model->price_discount);
+                $discount = ((float) $price_discount / (float) $model->price) * 100;
                 $model->price_discount_percentage = (float) number_format((float) $discount, 1, '.', '');
             }
         });
@@ -66,7 +67,8 @@ trait ProductCreatable
             }
 
             if(!is_null($model->price_discount) && !empty($model->price_discount)) {
-                $discount = ((float) $model->price_discount / (float) $model->price) * 100;
+                $price_discount = abs($model->price - $model->price_discount);
+                $discount = ((float) $price_discount / (float) $model->price) * 100;
                 $model->price_discount_percentage = (float) number_format((float) $discount, 1, '.', '');
             }
 
