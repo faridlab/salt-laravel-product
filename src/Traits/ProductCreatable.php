@@ -87,13 +87,6 @@ trait ProductCreatable
                 "height" => request()->get('dimension_height', $model->dimension['height']),
             ];
             $model->dimension = $dimension;
-
-            $name = $model->name;
-            $old_name = $model->getOriginal('name');
-            if($name == $old_name) {
-                return;
-            }
-            // $model->slug = Str::slug($model->name, '-') .'-'. $model->code;
         });
 
         static::created(function ($model) {
