@@ -65,6 +65,7 @@ class Products extends Resources {
         'variant',
         'brand_id',
         'data',
+        'recommended'
     ];
 
     protected $rules = array(
@@ -102,6 +103,7 @@ class Products extends Resources {
         'brand_id' => 'nullable|string',
         'data' => 'nullable|array',
         'video_url' => 'nullable|string',
+        'recommended' => 'nullable|boolean',
     );
 
     protected $auths = array (
@@ -151,6 +153,7 @@ class Products extends Resources {
         'brand_id',
         'data',
         'video_url',
+        'recommended',
     );
     protected $fillable = array(
         'code',
@@ -180,6 +183,7 @@ class Products extends Resources {
         'brand_id',
         'data',
         'video_url',
+        'recommended',
     );
 
     protected $casts = [
