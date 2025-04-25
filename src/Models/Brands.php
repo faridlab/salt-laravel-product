@@ -73,6 +73,12 @@ class Brands extends Resources {
     protected $forms = array();
     protected $structures = array();
 
+    public function save(array $options = [])
+    {
+        $this->updated_at = now();
+        return parent::save($options);
+    }
+
     protected $searchable = array('name', 'slug', 'short_desc', 'desc', 'status');
     protected $fillable = array('name', 'slug', 'short_desc', 'desc', 'status');
     protected $casts = [];
