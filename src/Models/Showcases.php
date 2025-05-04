@@ -43,7 +43,8 @@ class Showcases extends Resources {
         'slug',
         'short_desc',
         'desc',
-        'status'
+        'status',
+        'order'
     ];
 
     protected $rules = array(
@@ -51,7 +52,8 @@ class Showcases extends Resources {
         'slug' => 'nullable|string',
         'short_desc' => 'nullable|string',
         'desc' => 'nullable|string',
-        'status' => 'nullable|string'
+        'status' => 'nullable|string',
+        'order' => 'nullable|integer'
     );
 
     protected $auths = array (
@@ -73,8 +75,8 @@ class Showcases extends Resources {
     protected $forms = array();
     protected $structures = array();
 
-    protected $searchable = array('name', 'slug', 'short_desc', 'desc', 'status');
-    protected $fillable = array('name', 'slug', 'short_desc', 'desc', 'status');
+    protected $searchable = array('name', 'slug', 'short_desc', 'desc', 'status', 'order');
+    protected $fillable = array('name', 'slug', 'short_desc', 'desc', 'status', 'order');
     protected $casts = [];
 
     public function image() {
