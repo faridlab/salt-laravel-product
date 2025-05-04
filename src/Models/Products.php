@@ -196,6 +196,12 @@ class Products extends Resources {
         'data' => 'array',
     ];
 
+    public function save(array $options = [])
+    {
+        $this->updated_at = now();
+        return parent::save($options);
+    }
+
     public function category() {
         return $this->belongsTo('SaltCategories\Models\Categories', 'category_id', 'id');
     }

@@ -89,6 +89,28 @@ trait ProductCreatable
             $model->dimension = $dimension;
         });
 
+        static::updated(function ($model) {
+            $showcases = request()->get('showcases');
+            ProductShowcases::where('product_id', $model->id)->delete();
+            ProductShowcases::withTrashed()
+                ->where('product_id', $model->id)
+                ->whereIn('showcase_id', $showcases)
+                ->restore();
+            $restoredProductShowcases = ProductShowcases::where('product_id', $model->id)->get()->pluck('showcase_id')->toArray();
+            $cases = array_diff($showcases, $restoredProductShowcases);
+            $productShowcases = [];
+            foreach ($cases as $value) {
+                $productShowcases[] = [
+                    'id' => Str::uuid()->toString(),
+                    'product_id' => $model->id,
+                    'showcase_id' => $value,
+                    'created_at' => date("Y-m-d H:i:s", time()),
+                    'updated_at' => date("Y-m-d H:i:s", time()),
+                ];
+            }
+            ProductShowcases::insert($productShowcases);
+        });
+
         static::created(function ($model) {
             Files::where('foreign_id', $model->code)
             ->update(['foreign_id' => $model->id]);
