@@ -90,6 +90,10 @@ trait ProductCreatable
         });
 
         static::updated(function ($model) {
+            if (request()->isMethod('patch')) {
+                return;
+            }
+
             $showcases = request()->get('showcases');
             ProductShowcases::where('product_id', $model->id)->delete();
             ProductShowcases::withTrashed()
