@@ -47,11 +47,12 @@ class Transactions extends Resources {
         'expedition_fee',
         'total',
         'data',
+        'delivery_type',
     ];
 
     protected $rules = array(
         'trx_id' => 'nullable|string',
-        'user_id' => 'required|string',
+        'user_id' => 'nullable|string',
         'promo_id' => 'nullable|string',
         'purchase_date' => 'nullable|date_format:Y-m-d H:i:s',
         'status' => 'nullable|in:settlement,unpaid,cancel,paid',
@@ -59,7 +60,7 @@ class Transactions extends Resources {
         'price' => 'required|numeric',
         'quantity' => 'required|integer',
         'tax' => 'nullable|integer',
-        'address' => 'nullable|json',
+        'address' => 'nullable|array',
         'expedition' => 'nullable|json',
         'admin_fee' => 'nullable|numeric',
         'insurance_fee' => 'nullable|numeric',
@@ -67,12 +68,13 @@ class Transactions extends Resources {
         'discount' => 'nullable|integer',
         'total' => 'required|integer',
         'data' => 'nullable|json',
+        'delivery_type' => 'nullable|in:expedition,onstore',
     );
 
     protected $auths = array (
-        // 'index',
+        'index',
         'store',
-        // 'show',
+        'show',
         'update',
         'patch',
         'destroy',
@@ -106,6 +108,7 @@ class Transactions extends Resources {
         'expedition_fee',
         'total',
         'data',
+        'delivery_type',
     );
     protected $fillable = array(
         'trx_id',
@@ -125,9 +128,13 @@ class Transactions extends Resources {
         'expedition_fee',
         'total',
         'data',
+        'delivery_type',
     );
 
-    protected $casts = [];
+    protected $casts = [
+        'address' => 'array',
+        'expedition' => 'array',
+    ];
 
     public function user() {
         return $this->belongsTo('SaltLaravel\Models\Users', 'user_id', 'id')->withTrashed();
