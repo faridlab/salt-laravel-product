@@ -120,4 +120,3 @@ class CartsResourcesController extends Controller
     use ResourceReportable;
 
 }
-
