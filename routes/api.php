@@ -457,7 +457,7 @@ Route::middleware(['api'])
 
 
     // API: Transaction RESOURCES
-    Route::get("transactions", [TransactionsResourcesController::class, 'index']); // get entire collection
+    Route::get("transactions", [TransactionsResourcesController::class, 'index'])->middleware(['auth:api']); // get entire collection
     Route::post("transactions", [TransactionsResourcesController::class, 'store'])->middleware(['auth:api']); // create new collection
 
     Route::get("transactions/trash", [TransactionsResourcesController::class, 'trash'])->middleware(['auth:api']); // trash of collection
