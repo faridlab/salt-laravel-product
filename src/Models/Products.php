@@ -212,6 +212,10 @@ class Products extends Resources {
         return $this->belongsTo('SaltProduct\Models\Brands', 'brand_id', 'id');
     }
 
+    public function variants() {
+        return $this->hasMany('SaltProduct\Models\ProductVariants', 'product_id', 'id');
+    }
+
     public function images() {
         return $this->hasMany('SaltFile\Models\Files', 'foreign_id', 'id')->orderBy('order', 'asc');
     }
