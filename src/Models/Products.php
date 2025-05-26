@@ -13,12 +13,14 @@ use SaltFile\Traits\Fileable;
 use SaltLaravel\Traits\ObservableModel;
 use SaltLaravel\Traits\Uuids;
 use SaltProduct\Traits\ProductCreatable;
+use SaltProduct\Traits\HasProductVariants;
 
 class Products extends Resources {
 
     use Uuids;
     use ObservableModel;
     use ProductCreatable;
+    use HasProductVariants;
 
     use Fileable;
     protected $fileableFields = ['thumbnail', 'image'];
@@ -210,16 +212,16 @@ class Products extends Resources {
         return $this->belongsTo('SaltProduct\Models\Brands', 'brand_id', 'id');
     }
 
-    public function variants() {
-        return $this->hasMany('SaltProduct\Models\ProductVariants', 'product_id', 'id');
-    }
-
     public function images() {
         return $this->hasMany('SaltFile\Models\Files', 'foreign_id', 'id')->orderBy('order', 'asc');
     }
 
     public function showcases() {
         return $this->hasMany('SaltProduct\Models\ProductShowcases', 'product_id', 'id');
+    }
+
+    public function variant() {
+        return $this->hasMany('SaltProduct\Models\ProductVariantItems', 'product_id', 'id');
     }
 
 }
