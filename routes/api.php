@@ -12,6 +12,7 @@ use SaltProduct\Controllers\ProductShowcasesResourcesController;
 use SaltProduct\Controllers\VariantsResourcesController;
 use SaltProduct\Controllers\VariantUnitsResourcesController;
 use SaltProduct\Controllers\ProductVariantsResourcesController;
+use SaltProduct\Controllers\ProductVariantItemsResourcesController;
 use SaltProduct\Controllers\ProductWishlistResourcesController;
 use SaltProduct\Controllers\ProductVariantUnitsResourcesController;
 use SaltProduct\Controllers\PromotionsResourcesController;
@@ -278,6 +279,30 @@ Route::middleware(['api'])
     Route::patch("product_variants/{id}", [ProductVariantsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // patch collection by ID
     // DESTROY data by ID (id), selected IDs (selected), and All data (all)
     Route::delete("product_variants/{id}", [ProductVariantsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // soft delete a collection by ID
+
+    // API: Product Variant Items RESOURCES
+    Route::get("product_variant_items", [ProductVariantItemsResourcesController::class, 'index']); // get entire collection
+    Route::post("product_variant_items", [ProductVariantItemsResourcesController::class, 'store'])->middleware(['auth:api']); // create new collection
+
+    Route::get("product_variant_items/trash", [ProductVariantItemsResourcesController::class, 'trash'])->middleware(['auth:api']); // trash of collection
+
+    Route::post("product_variant_items/import", [ProductVariantItemsResourcesController::class, 'import'])->middleware(['auth:api']); // import collection from external
+    Route::post("product_variant_items/export", [ProductVariantItemsResourcesController::class, 'export'])->middleware(['auth:api']); // export entire collection
+    Route::get("product_variant_items/report", [ProductVariantItemsResourcesController::class, 'report'])->middleware(['auth:api']); // report collection
+
+    Route::get("product_variant_items/{id}/trashed", [ProductVariantItemsResourcesController::class, 'trashed'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // get collection by ID from trash
+
+    // RESTORE data by ID (id), selected IDs (selected), and All data (all)
+    Route::post("product_variant_items/{id}/restore", [ProductVariantItemsResourcesController::class, 'restore'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // restore collection by ID
+
+    // DELETE data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("product_variant_items/{id}/delete", [ProductVariantItemsResourcesController::class, 'delete'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // hard delete collection by ID
+
+    Route::get("product_variant_items/{id}", [ProductVariantItemsResourcesController::class, 'show'])->where('id', '[a-zA-Z0-9-]+'); // get collection by ID
+    Route::put("product_variant_items/{id}", [ProductVariantItemsResourcesController::class, 'update'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // update collection by ID
+    Route::patch("product_variant_items/{id}", [ProductVariantItemsResourcesController::class, 'patch'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // patch collection by ID
+    // DESTROY data by ID (id), selected IDs (selected), and All data (all)
+    Route::delete("product_variant_items/{id}", [ProductVariantItemsResourcesController::class, 'destroy'])->where('id', '[a-zA-Z0-9-]+')->middleware(['auth:api']); // soft delete a collection by ID
 
 
     // API: Product Wishlist RESOURCES
