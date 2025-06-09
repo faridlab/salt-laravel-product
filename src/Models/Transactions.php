@@ -159,4 +159,7 @@ class Transactions extends Resources {
         return $this->hasMany('SaltProduct\Models\TrackingOrders', 'transaction_id', 'id')->withTrashed();
     }
 
+    public function products() {
+        return $this->belongsToMany('SaltProduct\Models\Products', 'orders', 'transaction_id', 'product_id');
+    }
 }
