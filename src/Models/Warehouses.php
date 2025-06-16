@@ -45,7 +45,8 @@ class Warehouses extends Resources {
         'slug',
         'short_desc',
         'desc',
-        'status'
+        'status',
+        'code'
     ];
 
     protected $rules = array(
@@ -53,7 +54,8 @@ class Warehouses extends Resources {
         'slug' => 'nullable|string',
         'short_desc' => 'nullable|string',
         'desc' => 'nullable|string',
-        'status' => 'nullable|string'
+        'status' => 'nullable|string',
+        'code' => 'nullable|string'
     );
 
     protected $auths = array (
@@ -75,8 +77,8 @@ class Warehouses extends Resources {
     protected $forms = array();
     protected $structures = array();
 
-    protected $searchable = array('name', 'slug', 'short_desc', 'desc', 'status');
-    protected $fillable = array('name', 'slug', 'short_desc', 'desc', 'status');
+    protected $searchable = array('name', 'slug', 'short_desc', 'desc', 'status', 'code');
+    protected $fillable = array('name', 'slug', 'short_desc', 'desc', 'status', 'code');
     protected $casts = [];
 
     public function image() {
