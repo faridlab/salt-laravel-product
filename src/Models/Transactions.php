@@ -59,7 +59,7 @@ class Transactions extends Resources {
         'purchase_date' => 'nullable|date_format:Y-m-d H:i:s',
         'purchase_expired_time' => 'nullable|date_format:Y-m-d H:i:s',
         'payment_link' => 'nullable|string',
-        'status' => 'nullable|in:settlement,unpaid,cancel,paid',
+        'status' => 'nullable|in:settlement,unpaid,cancel,paid,failed,expired',
         'currency' => 'nullable|in:IDR,USD,EUR',
         'price' => 'required|numeric',
         'quantity' => 'required|integer',
