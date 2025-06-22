@@ -15,15 +15,17 @@ trait Shopable
         static::creating(function ($model) {
             $user = auth()->user();
             $product = Products::find($model->product_id);
+            $price = intval($product->price_discount) > 0 ? intval($product->price_discount): intval($product->price);
             $model->user_id = $user->id;
-            $model->price = $product->price_discount;
-            $model->total = $product->price_discount * $model->quantity;
+            $model->price = $price;
+            $model->total = $price * intval($model->quantity);
         });
 
         static::updating(function ($model) {
             $product = Products::find($model->product_id);
-            $model->price = $product->price_discount;
-            $model->total = $product->price_discount * $model->quantity;
+            $price = intval($product->price_discount) > 0 ? intval($product->price_discount): intval($product->price);
+            $model->price = $price;
+            $model->total = $price * intval($model->quantity);
         });
     }
 }
