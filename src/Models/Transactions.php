@@ -144,7 +144,7 @@ class Transactions extends Resources {
     ];
 
     public function user() {
-        return $this->belongsTo('SaltLaravel\Models\Users', 'user_id', 'id')->withTrashed();
+        return $this->belongsTo('App\Models\Users', 'user_id', 'id')->withTrashed();
     }
 
     public function promo() {
@@ -161,5 +161,9 @@ class Transactions extends Resources {
 
     public function products() {
         return $this->belongsToMany('SaltProduct\Models\Products', 'orders', 'transaction_id', 'product_id');
+    }
+
+    public function warehouse() {
+        return $this->belongsTo('SaltProduct\Models\Warehouses', 'warehouse_id', 'id')->withTrashed();
     }
 }
