@@ -9,6 +9,13 @@ use DB;
 use Illuminate\Support\Facades\Schema;
 
 use SaltFile\Traits\Fileable;
+use SaltProduct\Models\WarehouseAddresses;
+use SaltCountries\Models\Countries;
+use SaltCountries\Models\Provinces;
+use SaltCountries\Models\Cities;
+use SaltCountries\Models\Districts;
+use SaltCountries\Models\Subdistricts;
+
 use SaltLaravel\Models\Resources;
 use SaltLaravel\Traits\ObservableModel;
 use SaltLaravel\Traits\Uuids;
@@ -94,7 +101,27 @@ class Warehouses extends Resources {
     }
 
     public function address() {
-        return $this->hasOne('SaltProduct\Models\WarehouseAddresses', 'warehouse_id', 'id');
+        return $this->belongsTo('SaltProduct\Models\WarehouseAddresses', 'id', 'warehouse_id');
+    }
+
+    public function country() {
+        return $this->hasOneThrough(Countries::class, WarehouseAddresses::class, 'warehouse_id', 'id', 'id', 'country_id');
+    }
+
+    public function province() {
+        return $this->hasOneThrough(Provinces::class, WarehouseAddresses::class, 'warehouse_id', 'id', 'id', 'province_id');
+    }
+
+    public function city() {
+        return $this->hasOneThrough(Cities::class, WarehouseAddresses::class, 'warehouse_id', 'id', 'id', 'city_id');
+    }
+
+    public function district() {
+        return $this->hasOneThrough(Districts::class, WarehouseAddresses::class, 'warehouse_id', 'id', 'id', 'district_id');
+    }
+
+    public function subdistrict() {
+        return $this->hasOneThrough(Subdistricts::class, WarehouseAddresses::class, 'warehouse_id', 'id', 'id', 'subdistrict_id');
     }
 
 }
