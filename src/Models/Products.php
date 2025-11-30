@@ -221,7 +221,7 @@ class Products extends Resources {
     }
 
     public function showcases() {
-        return $this->belongsToMany('SaltProduct\Models\Showcases', 'product_showcases', 'product_id', 'showcase_id');
+        return $this->belongsToMany('SaltProduct\Models\Showcases', 'product_showcases', 'product_id', 'showcase_id')->where('product_showcases.deleted_at', null);
     }
 
     public function variant() {
