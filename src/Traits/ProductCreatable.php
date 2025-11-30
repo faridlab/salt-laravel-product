@@ -96,14 +96,7 @@ trait ProductCreatable
 
             $showcases = request()->get('showcases');
             ProductShowcases::where('product_id', $model->id)->delete();
-            ProductShowcases::withTrashed()
-                ->where('product_id', $model->id)
-                ->whereIn('showcase_id', $showcases)
-                ->restore();
-            $restoredProductShowcases = ProductShowcases::where('product_id', $model->id)->get()->pluck('showcase_id')->toArray();
-            $cases = array_diff($showcases, $restoredProductShowcases);
-            $productShowcases = [];
-            foreach ($cases as $value) {
+            foreach ($showcases as $value) {
                 $productShowcases[] = [
                     'id' => Str::uuid()->toString(),
                     'product_id' => $model->id,
