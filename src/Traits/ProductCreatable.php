@@ -60,8 +60,34 @@ trait ProductCreatable
         static::updating(function ($model) {
             if (request()->isMethod('patch')) {
                 $params = request()->all();
+                $stockKeys = ['stock_total', 'stock_available', 'stock_minimum_alert', 'stock_wording'];
                 foreach ($params as $key => $value) {
+                    if (in_array($key, $stockKeys, true)) continue;
                     $model[$key] = $value;
+                }
+
+                if (array_intersect(['price', 'price_discount'], array_keys($params))) {
+                    if (!is_null($model->price_discount) && !empty($model->price_discount) && (float) $model->price > 0) {
+                        $price_discount = abs($model->price - $model->price_discount);
+                        $discount = ((float) $price_discount / (float) $model->price) * 100;
+                        $model->price_discount_percentage = (float) number_format((float) $discount, 1, '.', '');
+                    } else {
+                        $model->price_discount_percentage = 0;
+                    }
+                }
+
+                if (array_intersect($stockKeys, array_keys($params))) {
+                    $current = is_array($model->stock) ? $model->stock : [];
+                    $stock = [
+                        "total" => request()->has('stock_total') ? (int) request()->get('stock_total') : ($current['total'] ?? 0),
+                        "minimum_alert" => request()->has('stock_minimum_alert') ? (int) request()->get('stock_minimum_alert') : ($current['minimum_alert'] ?? 0),
+                        "wording" => request()->get('stock_wording', $current['wording'] ?? ''),
+                        "main" => request()->has('stock_total') ? (int) request()->get('stock_total') : ($current['main'] ?? 0),
+                        "available" => request()->has('stock_available')
+                            ? (int) request()->get('stock_available')
+                            : (request()->has('stock_total') ? (int) request()->get('stock_total') : ($current['available'] ?? 0))
+                    ];
+                    $model->stock = $stock;
                 }
                 return;
             }
