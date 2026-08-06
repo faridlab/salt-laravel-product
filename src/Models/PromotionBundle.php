@@ -17,6 +17,11 @@ class PromotionBundle extends Resources {
     use Uuids;
     use ObservableModel;
 
+    // The migration creates the singular "promotion_bundle"; without this
+    // Eloquent would pluralise to "promotion_bundles" and every read/write
+    // would fail with "relation does not exist".
+    protected $table = 'promotion_bundle';
+
     protected $filters = [
         'default',
         'search',
@@ -34,7 +39,7 @@ class PromotionBundle extends Resources {
 
     protected $rules = array(
         'product_id' => 'required|string',
-        'promor_id' => 'required|string',
+        'promo_id' => 'required|string',
     );
 
     protected $auths = array (

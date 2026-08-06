@@ -17,6 +17,11 @@ class PromotionUsage extends Resources {
     use Uuids;
     use ObservableModel;
 
+    // The migration creates the singular "promotion_usage"; without this
+    // Eloquent would pluralise to "promotion_usages" and every read/write
+    // would fail with "relation does not exist".
+    protected $table = 'promotion_usage';
+
     protected $filters = [
         'default',
         'search',
@@ -38,7 +43,7 @@ class PromotionUsage extends Resources {
     protected $rules = array(
         'user_id' => 'required|string',
         'product_id' => 'required|string',
-        'promor_id' => 'required|string',
+        'promo_id' => 'required|string',
         'quantity' => 'required|integer',
         'discount' => 'required|integer',
     );
